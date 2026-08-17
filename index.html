@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GDJ Crocheteros · Catálogo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosa:#f7b6d2; --rosa2:#ffe5f0; --fucsia:#d85a96; --fucsia2:#ef8fbb;
+  --beige:#fff8ef; --crema:#fffdf9; --texto:#5d4550; --verde:#72b98a;
+  --sombra:0 8px 24px rgba(119,72,94,.12); --radio:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#fff7fb,#fffaf4);color:var(--texto);font-family:"Quicksand",sans-serif}
+h1,h2,h3,.logo,.btn,.cat-title{font-family:"Baloo 2",sans-serif}
+a{text-decoration:none;color:inherit}
+.container{width:min(1100px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,250,253,.94);backdrop-filter:blur(10px);border-bottom:1px solid #f3d6e3}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:25px;font-weight:700;color:var(--fucsia)}
+.logo span{color:#8e6d7a}
+.cart-btn{border:0;background:white;box-shadow:var(--sombra);border-radius:999px;padding:10px 14px;font-weight:700;color:var(--fucsia);cursor:pointer}
+.hero{padding:55px 0 45px;text-align:center}
+.hero-card{background:linear-gradient(135deg,#ffd9e8,#fff1e4);border:1px solid #f6c9dc;border-radius:32px;padding:42px 20px;box-shadow:var(--sombra)}
+.badge{display:inline-block;background:white;color:var(--fucsia);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700}
+h1{font-size:clamp(40px,10vw,70px);line-height:.95;margin:14px 0 12px;color:#6b4b5a}
+.hero p{max-width:620px;margin:0 auto 25px;font-size:17px}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{border:0;border-radius:999px;padding:13px 20px;cursor:pointer;font-size:16px;font-weight:700;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:var(--fucsia);color:white}
+.secondary{background:white;color:var(--fucsia);border:1px solid #efbfd3}
+section{padding:30px 0 50px}
+.section-head{text-align:center;margin-bottom:25px}
+.section-head h2{font-size:34px;margin:0 0 5px}
+.section-head p{margin:0;color:#8b717b}
+.category{margin:28px 0}
+.cat-title{font-size:27px;color:#7b5868;margin:0 0 13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:var(--crema);border:1px solid #f1dce5;border-radius:20px;overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column}
+.photo{aspect-ratio:1/1;background:linear-gradient(135deg,#fbe0eb,#f8eee2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.placeholder{text-align:center;padding:15px;color:#a78694;font-weight:700;font-size:14px}
+.card-body{padding:13px}
+.card h3{font-size:18px;margin:0 0 4px;line-height:1.1}
+.price{font-size:19px;font-weight:800;color:var(--fucsia);margin:4px 0}
+.desc{font-size:13px;min-height:18px;color:#8b717b}
+.choose{margin-top:10px;width:100%;padding:9px 10px;font-size:14px}
+.custom{background:linear-gradient(135deg,#fff0f6,#fff8ed);border:1px solid #f2c6d9;border-radius:25px;padding:25px;text-align:center;box-shadow:var(--sombra)}
+.custom h3{font-size:28px;margin:0 0 7px}.custom p{margin:0 0 16px}
+.form-card,.summary-card{background:white;border:1px solid #f0dce5;border-radius:24px;padding:22px;box-shadow:var(--sombra)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+input{width:100%;padding:12px 13px;border:1px solid #e6ccd8;border-radius:13px;font:inherit;outline:none;background:#fffafa}
+input:focus{border-color:var(--fucsia)}
+.field-full{grid-column:1/-1}
+.calendar{margin-top:20px}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.month{font-weight:800;font-size:18px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-grid div{text-align:center}
+.week{font-size:11px;font-weight:800;color:#a07889;padding:5px 0}
+.day{border:1px solid #f0d6e1;background:#fff8fb;border-radius:10px;padding:9px 0;cursor:pointer;font-weight:700}
+.day.empty{border:0;background:transparent;cursor:default}
+.day.selected{background:var(--fucsia);color:white;border-color:var(--fucsia)}
+.summary-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.summary-box{background:#fff7fb;border:1px dashed #e7b6ca;border-radius:18px;padding:16px}
+.summary-box h3{margin:0 0 8px;font-size:21px}
+.summary-list{margin:0;padding-left:20px}
+.summary-list li{margin:7px 0}
+.remove{border:0;background:#f8dbe7;color:#9d496e;border-radius:8px;padding:4px 7px;cursor:pointer;float:right}
+.total{font-size:22px;font-weight:800;color:var(--fucsia);margin-top:12px}
+footer{text-align:center;padding:25px 0 40px;color:#967985;font-size:13px}
+.drawer{position:fixed;right:12px;bottom:12px;z-index:40;width:min(410px,calc(100% - 24px));background:white;border:1px solid #efd6e1;border-radius:24px;box-shadow:0 20px 50px rgba(80,40,60,.2);padding:18px;display:none}
+.drawer.open{display:block}
+.drawer-head{display:flex;justify-content:space-between;align-items:center}
+.drawer h3{margin:0;font-size:24px}.close{border:0;background:#f8e0ea;border-radius:50%;width:34px;height:34px;cursor:pointer}
+.cart-list{max-height:260px;overflow:auto;margin:10px 0}
+.cart-item{padding:9px 0;border-bottom:1px solid #f3e2e8;font-size:14px}
+.cart-item button{float:right;border:0;background:transparent;color:#c05b83;cursor:pointer}
+.empty{color:#9b818b;text-align:center;padding:18px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}.hero{padding-top:70px}.photo{aspect-ratio:4/3}}
+@media(max-width:650px){.form-grid,.summary-layout{grid-template-columns:1fr}.field-full{grid-column:auto}.nav{height:62px}.hero-card{padding:34px 16px}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+  <a href="#home" class="logo">GDJ <span>Crocheteros</span> 🧶</a>
+  <button class="cart-btn" onclick="toggleCart()">🛒 Carrito <span id="cartCount">0</span></button>
+</div></header>
+
+<main>
+<section id="home" class="hero">
+<div class="container"><div class="hero-card">
+  <span class="badge">Hecho a mano con mucho amor 💗</span>
+  <h1>GDJ Crocheteros</h1>
+  <p>Amigurumis, accesorios, bolsos, decoración y mucho más. Elegí tus favoritos y armá tu pedido.</p>
+  <div class="actions">
+    <a class="btn primary" href="#productos">NUESTROS PRODUCTOS</a>
+    <a class="btn secondary" href="#pedido">HACER UN PEDIDO</a>
+  </div>
+</div></div>
+</section>
+
+<section id="productos"><div class="container">
+<div class="section-head"><h2>Nuestros productos</h2><p>Elegí los productos que quieras sumar a tu pedido.</p></div>
+<div id="catalog"></div>
+<div class="custom">
+  <h3>¿No encontraste lo que buscabas?</h3>
+  <p>¡Tranqui! 💗 Hacemos pedidos personalizados. Mandanos un mensaje por WhatsApp y contanos qué tenés en mente.</p>
+  <a class="btn primary" target="_blank" href="https://wa.me/5491157335770?text=Hola%20GDJ%20Crocheteros!%20Quiero%20consultar%20por%20un%20pedido%20personalizado.%20%F0%9F%92%97">MANDARNOS UN MENSAJE POR WHATSAPP</a>
+</div>
+</div></section>
+
+<section id="pedido"><div class="container">
+<div class="section-head"><h2>Hacer un pedido</h2><p>Completá tus datos y elegí la fecha en la que necesitás tus productos.</p></div>
+<div class="form-card">
+<div class="form-grid">
+<div><label for="nombre">Nombre</label><input id="nombre" placeholder="Tu nombre"></div>
+<div><label for="apellido">Apellido</label><input id="apellido" placeholder="Tu apellido"></div>
+<div class="field-full"><label for="telefono">Número de teléfono</label><input id="telefono" inputmode="tel" placeholder="Ej. 11 5733 5770"></div>
+</div>
+<div class="calendar">
+<div class="calendar-head"><button class="btn secondary" onclick="changeMonth(-1)">‹</button><div class="month" id="monthTitle"></div><button class="btn secondary" onclick="changeMonth(1)">›</button></div>
+<div class="cal-grid" id="calendar"></div>
+</div>
+</div>
+</div></section>
+
+<section id="resumen"><div class="container">
+<div class="section-head"><h2>Resumen</h2><p>Revisá tu pedido antes de enviarlo.</p></div>
+<div class="summary-layout">
+<div class="summary-card"><h3>Detalles de tu pedido</h3><div id="summary"></div></div>
+<div class="summary-card"><h3>Control</h3><p>Podés modificar los datos, cambiar la fecha o eliminar productos del carrito.</p><div class="actions" style="justify-content:flex-start">
+<button class="btn secondary" onclick="toggleCart()">VER CARRITO</button>
+<button class="btn primary" onclick="confirmWhatsApp()">CONFIRMAR PEDIDO POR WHATSAPP</button>
+</div></div>
+</div>
+</div></section>
+</main>
+
+<footer>GDJ Crocheteros · Hecho a mano en Argentina 💗</footer>
+
+<div class="drawer" id="drawer">
+<div class="drawer-head"><h3>🛒 Tu carrito</h3><button class="close" onclick="toggleCart()">×</button></div>
+<div id="cartList" class="cart-list"></div>
+<div class="total" id="cartTotal">$0</div>
+<button class="btn primary" style="width:100%;margin-top:10px" onclick="location.hash='resumen';toggleCart()">IR AL RESUMEN</button>
+</div>
+
+<script>
+const PRODUCTS = [
+  {
+    "id": 1,
+    "category": "amigurumis",
+    "name": "Tortuga menta granizada",
+    "price": 10000,
+    "desc": "100% chenille",
+    "image": "tortuga-menta-granizada.jpg"
+  },
+  {
+    "id": 2,
+    "category": "amigurumis",
+    "name": "Rapunzel",
+    "price": 10000,
+    "desc": "",
+    "image": "rapunzel.jpg"
+  },
+  {
+    "id": 3,
+    "category": "amigurumis",
+    "name": "Cenicienta",
+    "price": 10000,
+    "desc": "",
+    "image": "cenicienta.jpg"
+  },
+  {
+    "id": 4,
+    "category": "amigurumis",
+    "name": "Dinosaurio",
+    "price": 7500,
+    "desc": "100% chenille",
+    "image": "dinosaurio.jpg"
+  },
+  {
+    "id": 5,
+    "category": "amigurumis",
+    "name": "Tick de Brawl Stars",
+    "price": 10000,
+    "desc": "",
+    "image": "tick-brawl-stars.jpg"
+  },
+  {
+    "id": 6,
+    "category": "amigurumis",
+    "name": "Mini panda",
+    "price": 5000,
+    "desc": "",
+    "image": "mini-panda.jpg"
+  },
+  {
+    "id": 7,
+    "category": "amigurumis",
+    "name": "Ranitas patonas",
+    "price": 4500,
+    "desc": "100% chenille",
+    "image": "ranitas-patonas.jpg"
+  },
+  {
+    "id": 8,
+    "category": "amigurumis",
+    "name": "Muñecos personalizados",
+    "price": 10000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 9,
+    "category": "amigurumis",
+    "name": "Tortugas flores",
+    "price": 8500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 10,
+    "category": "amigurumis",
+    "name": "Spiderman",
+    "price": 10000,
+    "desc": "Chenille",
+    "image": ""
+  },
+  {
+    "id": 11,
+    "category": "amigurumis",
+    "name": "Pelotocino Roblox",
+    "price": 8000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 12,
+    "category": "amigurumis",
+    "name": "Pascal de Rapunzel",
+    "price": 5500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 13,
+    "category": "amigurumis",
+    "name": "Psyduck",
+    "price": 7000,
+    "desc": "Pokémon",
+    "image": ""
+  },
+  {
+    "id": 14,
+    "category": "amigurumis",
+    "name": "Mimikyu",
+    "price": 7000,
+    "desc": "Pokémon",
+    "image": ""
+  },
+  {
+    "id": 15,
+    "category": "amigurumis",
+    "name": "Osito",
+    "price": 10000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 16,
+    "category": "accesorios",
+    "name": "Vincha frutillas",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 17,
+    "category": "accesorios",
+    "name": "Vincha tomate",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 18,
+    "category": "accesorios",
+    "name": "Vincha flor",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 19,
+    "category": "accesorios",
+    "name": "Vincha floral",
+    "price": 2500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 20,
+    "category": "accesorios",
+    "name": "Vincha flores",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 21,
+    "category": "accesorios",
+    "name": "Bandana argentina",
+    "price": 4500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 22,
+    "category": "accesorios",
+    "name": "Vincha",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 23,
+    "category": "accesorios",
+    "name": "Billetera flan",
+    "price": 2500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 24,
+    "category": "accesorios",
+    "name": "Cinturón de red",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 25,
+    "category": "accesorios",
+    "name": "Cinturón Spiderman",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 26,
+    "category": "accesorios",
+    "name": "Bufanda Gryffindor",
+    "price": 15000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 27,
+    "category": "accesorios",
+    "name": "Chokers",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 28,
+    "category": "accesorios",
+    "name": "Scrunchies",
+    "price": 1200,
+    "desc": "2 × $1200",
+    "image": ""
+  },
+  {
+    "id": 29,
+    "category": "accesorios",
+    "name": "Cinturón flores",
+    "price": 4000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 30,
+    "category": "accesorios",
+    "name": "Vincha tulipán",
+    "price": 4000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 31,
+    "category": "otros",
+    "name": "Marcapáginas",
+    "price": 2500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 32,
+    "category": "otros",
+    "name": "Set taza",
+    "price": 10000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 33,
+    "category": "otros",
+    "name": "Ramo 3 flores",
+    "price": 7000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 34,
+    "category": "otros",
+    "name": "Ramo 5 flores",
+    "price": 12000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 35,
+    "category": "otros",
+    "name": "Ramo 2 flores + amigurumi",
+    "price": 15000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 36,
+    "category": "otros",
+    "name": "Cup cozy",
+    "price": 2500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 37,
+    "category": "otros",
+    "name": "Mesh top",
+    "price": 10000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 38,
+    "category": "otros",
+    "name": "Manta ramo",
+    "price": 15000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 39,
+    "category": "bolsos",
+    "name": "Totebag corazón",
+    "price": 12000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 40,
+    "category": "bolsos",
+    "name": "Porta botellas",
+    "price": 6500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 41,
+    "category": "bolsos",
+    "name": "Bolso estrella",
+    "price": 12000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 42,
+    "category": "bolsos",
+    "name": "Totebag trapillo",
+    "price": 12000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 43,
+    "category": "bolsos",
+    "name": "Triple granny",
+    "price": 10000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 44,
+    "category": "llaveros",
+    "name": "Pokeballs",
+    "price": 2500,
+    "desc": "c/u",
+    "image": ""
+  },
+  {
+    "id": 45,
+    "category": "llaveros",
+    "name": "Llavero sol",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 46,
+    "category": "llaveros",
+    "name": "Llavero luna",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 47,
+    "category": "llaveros",
+    "name": "Llaveros compartidos sol y luna",
+    "price": 7000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 48,
+    "category": "llaveros",
+    "name": "Cakerolls",
+    "price": 2300,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 49,
+    "category": "llaveros",
+    "name": "Porta labial",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 50,
+    "category": "llaveros",
+    "name": "Abeja",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 51,
+    "category": "llaveros",
+    "name": "Pulpo",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 52,
+    "category": "llaveros",
+    "name": "Pingüino",
+    "price": 3750,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 53,
+    "category": "llaveros",
+    "name": "Llavero BTS",
+    "price": 3750,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 54,
+    "category": "llaveros",
+    "name": "Ranita",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 55,
+    "category": "llaveros",
+    "name": "Eeveelutions",
+    "price": 4000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 56,
+    "category": "llaveros",
+    "name": "Stitch",
+    "price": 3750,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 57,
+    "category": "llaveros",
+    "name": "Spiderman",
+    "price": 3750,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 58,
+    "category": "llaveros",
+    "name": "Flores",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 59,
+    "category": "hogar",
+    "name": "Portavasos de flores ×6",
+    "price": 7500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 60,
+    "category": "hogar",
+    "name": "Portavasos espiral ×6",
+    "price": 6000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 61,
+    "category": "hogar",
+    "name": "Portavasos mandala ×6",
+    "price": 5500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 62,
+    "category": "hogar",
+    "name": "Espiral de viento",
+    "price": 5500,
+    "desc": "1 × $5500 · 2 × $10000",
+    "image": ""
+  },
+  {
+    "id": 63,
+    "category": "hogar",
+    "name": "Alfombra",
+    "price": 15000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 64,
+    "category": "hogar",
+    "name": "Guirnalda con nombre",
+    "price": 8500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 65,
+    "category": "hogar",
+    "name": "Guirnalda de flores",
+    "price": 7500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 66,
+    "category": "hogar",
+    "name": "Cestos de trapillo ×4",
+    "price": 9500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 67,
+    "category": "hogar",
+    "name": "Cesto de trapillo",
+    "price": 3000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 68,
+    "category": "hogar",
+    "name": "Portavasos cuadriculados",
+    "price": 5500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 69,
+    "category": "hogar",
+    "name": "Cuadro AFA",
+    "price": 3500,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 70,
+    "category": "hogar",
+    "name": "Cuadro escudo de fútbol",
+    "price": 4750,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 71,
+    "category": "hogar",
+    "name": "Flor en maceta",
+    "price": 5000,
+    "desc": "",
+    "image": ""
+  },
+  {
+    "id": 72,
+    "category": "hogar",
+    "name": "Planta colgante",
+    "price": 4500,
+    "desc": "",
+    "image": ""
+  }
+];
+
+</script>
+<script>
+const categories = [
+  ["amigurumis","AMIGURUMIS"],
+  ["accesorios","ACCESORIOS"],
+  ["hogar","DECORACIONES PARA EL HOGAR"],
+  ["llaveros","LLAVEROS"],
+  ["bolsos","BOLSOS"],
+  ["otros","OTROS"]
+];
+let cart = [];
+let selectedDate = "";
+let shownMonth = new Date();
+shownMonth.setDate(1);
+
+const money = n => new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}).format(n);
+
+function renderCatalog(){
+  const root = document.getElementById("catalog");
+  root.innerHTML = categories.map(([key,title])=>{
+    const items = PRODUCTS.filter(p=>p.category===key);
+    return `<div class="category"><h3 class="cat-title">${title}</h3><div class="grid">${
+      items.map(p=>`<article class="card">
+        <div class="photo">${p.image ? `<img src="imagenes/${p.image}" alt="${p.name}" loading="lazy">` : `<div class="placeholder">📷<br>Foto del producto</div>`}</div>
+        <div class="card-body"><h3>${p.name}</h3><div class="price">${money(p.price)}${p.desc==="c/u" ? " c/u":""}</div><div class="desc">${p.desc && p.desc!=="c/u" ? p.desc : "&nbsp;"}</div>
+        <button class="btn primary choose" onclick="addToCart(${p.id})">Elegir este producto</button></div>
+      </article>`).join("")
+    }</div></div>`;
+  }).join("");
+}
+function addToCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  cart.push(p);
+  updateCart();
+  const drawer=document.getElementById("drawer"); drawer.classList.add("open");
+}
+function removeFromCart(i){cart.splice(i,1);updateCart()}
+function updateCart(){
+  document.getElementById("cartCount").textContent=cart.length;
+  const list=document.getElementById("cartList");
+  list.innerHTML=cart.length ? cart.map((p,i)=>`<div class="cart-item"><button onclick="removeFromCart(${i})">Eliminar</button><b>${p.name}</b><br>${money(p.price)}</div>`).join("") : `<div class="empty">Todavía no elegiste productos 💗</div>`;
+  document.getElementById("cartTotal").textContent=money(cart.reduce((s,p)=>s+p.price,0));
+  renderSummary();
+}
+function toggleCart(){document.getElementById("drawer").classList.toggle("open")}
+function renderSummary(){
+  const name=[document.getElementById("nombre").value,document.getElementById("apellido").value].filter(Boolean).join(" ") || "—";
+  const tel=document.getElementById("telefono").value || "—";
+  const items=cart.length ? `<ul class="summary-list">${cart.map((p,i)=>`<li>${p.name} — <b>${money(p.price)}</b> <button class="remove" onclick="removeFromCart(${i})">×</button></li>`).join("")}</ul>` : "<p>Elegí productos desde el catálogo.</p>";
+  document.getElementById("summary").innerHTML=`<p><b>Nombre:</b> ${name}</p><p><b>Teléfono:</b> ${tel}</p><p><b>Fecha de entrega:</b> ${selectedDate||"—"}</p>${items}<div class="total">Total estimado: ${money(cart.reduce((s,p)=>s+p.price,0))}</div>`;
+}
+["nombre","apellido","telefono"].forEach(id=>document.getElementById(id).addEventListener("input",renderSummary));
+
+function renderCalendar(){
+  const y=shownMonth.getFullYear(), m=shownMonth.getMonth();
+  document.getElementById("monthTitle").textContent=new Intl.DateTimeFormat("es-AR",{month:"long",year:"numeric"}).format(shownMonth);
+  const first=new Date(y,m,1), last=new Date(y,m+1,0);
+  const start=(first.getDay()+6)%7;
+  const cells=[];
+  ["L","M","X","J","V","S","D"].forEach(d=>cells.push(`<div class="week">${d}</div>`));
+  for(let i=0;i<start;i++) cells.push(`<div class="day empty"></div>`);
+  for(let d=1;d<=last.getDate();d++){
+    const iso=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    cells.push(`<button class="day ${iso===selectedDate?"selected":""}" onclick="selectDate('${iso}')">${d}</button>`);
+  }
+  document.getElementById("calendar").innerHTML=cells.join("");
+}
+function selectDate(iso){
+  selectedDate=iso;
+  renderCalendar();renderSummary();
+}
+function changeMonth(delta){shownMonth.setMonth(shownMonth.getMonth()+delta);renderCalendar()}
+
+function confirmWhatsApp(){
+  if(!cart.length){alert("Elegí al menos un producto antes de confirmar 💗");return}
+  const nombre=[document.getElementById("nombre").value,document.getElementById("apellido").value].filter(Boolean).join(" ");
+  const tel=document.getElementById("telefono").value;
+  const fecha=selectedDate||"A confirmar";
+  const items=cart.map(p=>`- ${p.name}: ${money(p.price)}`).join("\n");
+  const total=money(cart.reduce((s,p)=>s+p.price,0));
+  const msg=`Hola GDJ Crocheteros! 💗 Deseo confirmar mi pedido:\n\nNombre: ${nombre||"A completar"}\nTeléfono: ${tel||"A completar"}\nProductos:\n${items}\nFecha de entrega: ${fecha}\nTotal estimado: ${total}`;
+  window.open("https://wa.me/5491157335770?text="+encodeURIComponent(msg),"_blank");
+}
+renderCatalog();renderCalendar();updateCart();
+</script>
+</body>
+</html>
